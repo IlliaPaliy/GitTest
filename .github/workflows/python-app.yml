@@ -41,4 +41,3 @@ jobs:
     - name: Upload application
       run: |
         python zip.py
-	aws lambda update-function-code --function-name=TestFunc --zip-file=fileb://deploy.zip
