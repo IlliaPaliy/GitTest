@@ -41,6 +41,9 @@ jobs:
       uses: actions/setup-python@v2
       with: 
        python-version: 3.9
-    - name: execute py script # run the run.py to get the latest data
+    - name: Zip a file
       run: |
             python zip.py
+    - name: Upload to aws lambda
+      run: |
+            aws lambda update-function-code --function-name=TestFunc --zip-file=fileb://deploy.zip
