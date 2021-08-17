@@ -25,7 +25,6 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # if you have/need it
         aws-region: us-east-2
     - name: Install dependencies
       run: |
@@ -41,3 +40,4 @@ jobs:
     - name: Upload application
       run: |
         python zip.py
+	aws lambda update-function-code --function-name=TestFunc --zip-file=fileb://deploy.zip
