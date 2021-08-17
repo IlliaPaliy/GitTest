@@ -37,12 +37,9 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Upload application
+    - name: Zip a file
+      uses: actions/setup-python@v2
+      with: python-version:3.9
       run: |
-      	python
-        import zipfile
-	jungle_zip = zipfile.ZipFile('deploy.zip','w')
-	jungle_zip.write('run.py', compress_type=zipfile.ZIP_DEFLATED)
-	jungle_zip.close()
-	exit()
+        python zip.py
 	aws lambda update-function-code --function-name=TestFunc --zip-file=fileb://deploy.zip
