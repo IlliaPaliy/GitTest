@@ -39,5 +39,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Upload application
       run: |
-        python zip.py
+      	python
+        import zipfile
+	jungle_zip = zipfile.ZipFile('deploy.zip','w')
+	jungle_zip.write('run.py', compress_type=zipfile.ZIP_DEFLATED)
+	jungle_zip.close()
+	exit()
 	aws lambda update-function-code --function-name=TestFunc --zip-file=fileb://deploy.zip
