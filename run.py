@@ -1,7 +1,7 @@
 import json
 
 def lambda_handler(event, context):
-    message="Hello aws"
+    message="Hello lambda"
     return {
     'statusCode': 200,
     'headers': {'Content-Type': 'application/json'},
